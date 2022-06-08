@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      text-align: left;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body style="background-color: peachpuff">
+
+<center>
+<h1>Which player is better?</h1>
+<h3>Using advanced stats from basketball-reference.com</h3>
+</center>
+<br><br>
+<!-- <form>
+  <label for="player_1">First player:</label>
+  <input type="text" id="player_1" name="player_1"><br><br>
+  <label for="player_2">Last player:</label>
+  <input type="text" id="player_2" name="player_2"><br><br>
+  <input type="submit" value="Submit">
+</form> -->
+
+<form class="grid" action="/result" method="POST">
+  <center>
+    <label for = "Name">Enter a list of players separated by commas:</label>
+    <p style="color: red">Please note that it may take 1-2 minutes if you enter a large list (more than 5-6 names)</p>
+    <input type="text" name="name_list" id="name_list"><br><br>
+    <input type="Submit" class="file_submit">
+
+      {% if player_array %}
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Notable Accolades and Awards</th>
+          <th>Career Stats</th>
+          <th>Calculated Score</th>
+        </tr>
+      {% for item in player_array%}
+      <tr>
+        <th style="color: blue;">{{item['Name']}}</th>
+        <td>{{item['Accolades']}}</td>
+        <td>{{item['Stats']}}</td>
+        <td>{{item['GOAT Score']}}</td>
+      </tr>
+      {% endfor %}
+      </table>
+      <h3>So...</h3>
+      <h3>{{final_statement}}</h3>
+      {% endif %}
+    </center>
+
+</form>
+
+
+</body>
+</html>
